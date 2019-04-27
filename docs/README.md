@@ -52,7 +52,7 @@ the world is allowed to visit my website?
 | HTTP              | TCP      | 80           | ::/0               |             |
 | Custom TCP Rule   | TCP      | 8080         | 0.0.0.0/0          |             |
 | Custom TCP Rule   | TCP      | 8080         | ::/0               |             |
-| SSH               | TCP      | 22           | 73.83.199.86/32    |             |
+| SSH               | TCP      | 22           | 173.82.199.34/32   |             |
 
 Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
