@@ -42,6 +42,7 @@ to the world, or does it mean my security group is describing that
 the world is allowed to visit my website?
 
 ## TODO:
+* Learn what 0.0.0.0/0 means for Source. I assume it means everyone. What's the `/0` or `/32`appended?
 * Chart below: The online help for Source should explain what `0.0.0.0/0` means.
 
 
@@ -49,7 +50,7 @@ the world is allowed to visit my website?
 |-------------------|----------|--------------|--------------------|-------------|
 | HTTP | TCP        | TCP      | 80           | 0.0.0.0/0          |             |
 | HTTP | TCP        | TCP      | 80           | ::/0               |             |
-| Custom TCP Rule   | TCP     | 8080          | 0.0.0.0/0          |             |
+| Custom TCP Rule   | TCP      | 8080         | 0.0.0.0/0          |             |
 | Custom TCP Rule   | TCP      | 8080         | ::/0               |             |
 | SSH               | TCP      | 22           | 73.83.199.86/32    |             |
 
