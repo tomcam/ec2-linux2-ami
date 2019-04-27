@@ -48,8 +48,8 @@ the world is allowed to visit my website?
 
 | Type              | Protocol | Port Range   | Source             | Description |
 |-------------------|----------|--------------|--------------------|-------------|
-| HTTP | TCP        | TCP      | 80           | 0.0.0.0/0          |             |
-| HTTP | TCP        | TCP      | 80           | ::/0               |             |
+| HTTP              | TCP      | 80           | 0.0.0.0/0          |             |
+| HTTP              | TCP      | 80           | ::/0               |             |
 | Custom TCP Rule   | TCP      | 8080         | 0.0.0.0/0          |             |
 | Custom TCP Rule   | TCP      | 8080         | ::/0               |             |
 | SSH               | TCP      | 22           | 73.83.199.86/32    |             |
