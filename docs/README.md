@@ -1,3 +1,8 @@
+## Creating an Amazon Linux 2 instance and configuring it to run Golang programs
+
+This is mostly for me because I'm bad at following multiple web pages linking all
+over the place.
+
 * Browse to the [EC2 Dashboard](https://console.aws.amazon.com/ec2/)
 
 * Choose **Launch Instance**.
@@ -8,7 +13,7 @@
 
 * Choose **Review and Launch**, taking you to the **Review Instance Launch** page.
 
-It has created a security gropu, called something like `launch-wizard 1`.
+It has created a security group, called something like `launch-wizard 1`.
 
 * Choose **Edit Security Groups**
 
@@ -35,6 +40,20 @@ facilitate access to the application or service you're running,
 e.g., HTTP (80) for web servers. Edit security groups
 ```
 
+* Choose **Launch**.
+
+A **Select an existing key pair or create a new key pair** dialog appears.
+
+* If you don't have one, choose **Create a new key pair** and follow instructions carefully (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html for more details).
+
+* I already have one so I choose it, then choose it.
+
+* Check the "I acknowledge" box, then choose **Launch Instances**
+
+The **Launch Status** page appears with a message saying
+**Your instances are now launching**, with a link to the instance being
+created.
+
 ## TODO:
 
 * Research the above message. Does it mean that my security group itself is open
@@ -53,6 +72,13 @@ the world is allowed to visit my website?
 | Custom TCP Rule   | TCP      | 8080         | 0.0.0.0/0          |             |
 | Custom TCP Rule   | TCP      | 8080         | ::/0               |             |
 | SSH               | TCP      | 22           | 173.82.199.34/32   |             |
+
+#### Notes
+
+* A warning says `Rules with source of 0.0.0.0/0 allow all IP addresses to access your instance. We recommend setting security group rules to allow access from known IP addresses only.` But isn't that exactly what I want for a website?
+
+* Be sure to use [Billing Preferences](https://console.aws.amazon.com/billing/home?#/preferences) to notify you
+of cost overruns.
 
 Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
