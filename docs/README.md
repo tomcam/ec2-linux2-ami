@@ -116,6 +116,26 @@ what you type. Plus you have to do it twice.
 ssh -i "~/.ssh/sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
 ```
 
+## Configuring the AWS CLI
+
+### Note/Amazon doc defect
+
+A number of the following commands use the AWS CLI, or command line interface. 
+You can't just start typing the commands, however, because they're cryptographically
+signed. It turns out that you first have to
+the [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+That's good, but the docs so far haven't mentioned it and the errors I was getting didn't point me
+in that direction. I wanted to configure using the CLI using the command line (makes it easier to automate later).
+I wanted to do this via the command line. As near as I can tell from [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), the second part of that page called "Creating an IAM User and Group (AWS CLI)" can't be implemented via the command line right after creating an instance. That's because it requires secrets.
+
+* Go the [IAM Console](https://console.aws.amazon.com/iam/home?#home).
+
+* From the navigation pane choose **Users**, under **Dashboard**.
+
+| User name | Groups | Access key age | Password age | Last activity | MFA |
+|-----------|--------|----------------|--------------|---------------|-----|
+| HTTP              | TCP      | 80           | 0.0.0.0/0          |             |
+
 
 ## Connecting with SSH
 
@@ -125,14 +145,13 @@ on your dashboard.
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
 ## TODO: I think I need to cover
-* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint. It turns out that you first have to configure
-the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), which is cryptographically
-signed. That's good, but the docs so far haven't mentioned it and the errors I was getting didn't point me
-in that direction. 
+* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint. I
 
 ### Get the instance fingerprint
 
 ### NOTE
+
+* First have to start at the AWS Console, so to go [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
 * Pretty sure this has to be preceded by [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) to get the AWS CLI signed, then configuring the CLI [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 
@@ -161,12 +180,19 @@ of cost overruns.
 
 ### Amazon doc defects
 
-[(Optional) Get the Instance Fingerprint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-fingerprint) gives incomplete instructions for getting the instance ID fingerprint.
+* [(Optional) Get the Instance Fingerprint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-fingerprint) gives incomplete instructions for getting the instance ID fingerprint.
 They give the example `aws ec2 get-console-output --instance-id instance_id` but when I did it I got the error `You must specify a region. You can also configure your region by running "aws configure".` I found an example of specifying a region on [Stack Overflow](https://stackoverflow.com/questions/29166957/error-you-must-specify-a-region-when-running-command-aws-ecs-list-container-inst) which looked more like this: `aws ec2 get-console-output --instance-id instance_id --region us-east-1`. When I tried it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure"`. So I think that passage is missing a whole section.  I think it needs to be precded. And getting the fingerprint probably isn't optional, because I'm sure I'm not the only one who ran into the fingerprint problem by just stopping an instance.
+* I wanted to create the IAM User and Group using the AWS CLI as detailed on [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). The docs don't say it very well but you're supposed to do something like this to create a group named Admins:
+
+```
+aws iam create-group --group-name Admins
+```
+
+However when I did it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure".`
 
 ## Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 * [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+* [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 * [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) to get the AWS CLI signed
-* Configuring the CLI [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 * [AWS Tasks that Require Account Root User](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)
