@@ -134,13 +134,29 @@ I wanted to do this via the command line. As near as I can tell from [Creating Y
 
 * You'll see that there are no users defined yet.
 
-```
 *Add user* | *Delete user* 
 
 | User name | Groups | Access key age | Password age | Last activity | MFA |
 |-----------|--------|----------------|--------------|---------------|-----|
 | *There are no IAM users. Learn more |
-```
+
+* Choose **Add user**.
+
+The **Add user** page appears.
+
+* Under Set user details, put `Administrator` for User name.
+
+* Look for the checkbox next to **AWS Management Console access** and make sure
+it's checked.
+
+* At Console password, make a password choice. We'll choose Custom password. Type the password
+down in your notes, then copy and paste it in.
+
+* Uncheck **Require password reset** because, c'mon, you can handle this. You already wrote
+down your password, you clever person.
+
+* Choose **Next: Permissions**.
+
 
 ## Connecting with SSH
 
