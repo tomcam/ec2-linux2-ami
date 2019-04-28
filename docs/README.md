@@ -334,7 +334,41 @@ There should be one with the Destination `0.0.0.0/0` and Target with an igw numb
 
 ### TODO: Figure out what to do if there's no such destination; see https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles
 
+## Install go
 
+* Update your system and install Go:
+```
+sudo yum update -y
+sudo yum install -y golang
+```
+
+### Update $GOPATH
+
+* Open your bash profile:
+
+```
+vim ~/.bash_profile
+```
+
+* Append these lines at the bottom of the file:
+
+```
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+```
+
+* Save the file and exit, then create the recommended Go workspace:
+
+```
+mkdir -p $HOME/go/{bin,src}
+```
+
+* Then create a test project:
+
+```
+mkdir -p $HOME/go/src/test
+cd $HOME/go/src/test
+```
 
 ## TODO: I think I need to cover
 * [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint and to be able to script things like configuring the firewall. That requires AWS CLI access, which requires IAM secrets, which requires the creation of an IAM user, which requires the creation of a group.
