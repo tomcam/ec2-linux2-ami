@@ -1,7 +1,9 @@
 ## Creating an Amazon Linux 2 instance and configuring it to run Golang programs
 
 This is mostly for me because I'm bad at following multiple web pages linking all
-over the place.
+over the place. It's MacOS-oriented, assuming a bash shell.
+
+This section is based on [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 
 * Browse to the [EC2 Dashboard](https://console.aws.amazon.com/ec2/)
 
@@ -40,20 +42,6 @@ facilitate access to the application or service you're running,
 e.g., HTTP (80) for web servers. Edit security groups
 ```
 
-* Choose **Launch**.
-
-A **Select an existing key pair or create a new key pair** dialog appears.
-
-* If you don't have one, choose **Create a new key pair** and follow instructions carefully (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html for more details).
-
-* I already have one so I choose it, then choose it.
-
-* Check the "I acknowledge" box, then choose **Launch Instances**
-
-The **Launch Status** page appears with a message saying
-**Your instances are now launching**, with a link to the instance being
-created.
-
 ## TODO:
 
 * Research the above message. Does it mean that my security group itself is open
@@ -73,7 +61,37 @@ the world is allowed to visit my website?
 | Custom TCP Rule   | TCP      | 8080         | ::/0               |             |
 | SSH               | TCP      | 22           | 173.82.199.34/32   |             |
 
-#### Notes
+
+* Choose **Launch**.
+
+A **Select an existing key pair or create a new key pair** dialog appears.
+
+* If you don't have one, choose **Create a new key pair** and follow instructions carefully (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html for more details).
+
+* I already have one so I choose it, then choose it.
+
+* Check the "I acknowledge" box, then choose **Launch Instances**
+
+The **Launch Status** page appears with a message saying
+**Your instances are now launching**, with a link to the instance being
+created.
+
+When it's ready, click the **Connect** button between **Launch Instance** and **Actions** 
+on your dashboard.
+
+## Connecting with SSH
+
+This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+
+## Not covered properly
+
+* Passwords are just dead. It's all .PEM files.
+* PEM files seem to contain both public and private keys
+* An overview of using SSH
+* How to deal with stopping an instance, then trying to get back in (SSH fingerprint error)
+* Create an SSH directory `mkdir -p ~/.ssh`
+
+### Notes
 
 * A warning says `Rules with source of 0.0.0.0/0 allow all IP addresses to access your instance. We recommend setting security group rules to allow access from known IP addresses only.` But isn't that exactly what I want for a website?
 
@@ -82,4 +100,6 @@ of cost overruns.
 
 Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
+* [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+
 
