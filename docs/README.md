@@ -206,11 +206,24 @@ Administrator https://2649932634109.signin.aws.amazon.com/console
 ```
 
 * Click the link to log in. You'll be taken to an **aws** login page 
-with fields containing **Acount ID or alias**, **IAM user name**, and **Password**:
+with fields containing **Account ID or alias**, **IAM user name**, and **Password**.
 
-| Acount ID or alias |
-----------------------
-|                    |
+**Account ID or alias*
+
+| 2649932634109         |           
+| --------------------- |
+
+**IAM username**
+
+| Administrator         |           
+| --------------------- |
+
+**Password**
+
+| 2649932634109         |           
+| --------------------- |
+
+
 ### Get access keys
 
 ## Connecting with SSH
