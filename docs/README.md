@@ -120,6 +120,8 @@ ssh -i "~/.ssh/sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws
 
 ### Note/Amazon doc defect
 
+
+
 A number of the following commands use the AWS CLI, or command line interface. 
 You can't just start typing the commands, however, because they're cryptographically
 signed. It turns out that you first have to
@@ -127,6 +129,8 @@ the [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli
 That's good, but the docs so far haven't mentioned it and the errors I was getting didn't point me
 in that direction. I wanted to configure using the CLI using the command line (makes it easier to automate later).
 I wanted to do this via the command line. As near as I can tell from [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), the second part of that page called "Creating an IAM User and Group (AWS CLI)" can't be implemented via the command line right after creating an instance. That's because it requires secrets.
+
+### Create an Administrators group
 
 * Go the [IAM Console](https://console.aws.amazon.com/iam/home?#home).
 
@@ -176,11 +180,38 @@ The number of policies has been reduced (you set a filter).
 * Choose **Create group**.
 
 The new group appears:
+
 *Create group* | *Refresh* 
 
 | Groups         | Attached policies   |
 |----------------|---------------------|
 | Administrators | AdministratorAccess |
+
+* Choose **Next: Tags**
+
+This is a small operation so we don't need tags, which help organize large operations.
+
+* Choose **Next: Review**
+
+You're shown a summary of the work you've just 
+done creating the group.
+
+* Choose **Create user**
+
+A page appears showing a link for the newly created role to sign in. There's
+a long link looking something like this:
+
+```
+Administrator https://2649932634109.signin.aws.amazon.com/console
+```
+
+* Click the link to log in. You'll be taken to an **aws** login page 
+with fields containing **Acount ID or alias**, **IAM user name**, and **Password**:
+
+| Acount ID or alias |
+----------------------
+|                    |
+### Get access keys
 
 ## Connecting with SSH
 
@@ -230,7 +261,7 @@ They give the example `aws ec2 get-console-output --instance-id instance_id` but
 * I wanted to create the IAM User and Group using the AWS CLI as detailed on [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). The docs don't say it very well but you're supposed to do something like this to create a group named Admins:
 
 ```
-aws iam create-group --group-name Admins
+aws iam create-group --group-name Administrators
 ```
 
 However when I did it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure".`
