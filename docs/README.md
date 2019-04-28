@@ -309,6 +309,11 @@ on your dashboard.
 
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
+## Set up your firewall (VPC)
+
+* Open the [Amazon VPC console](https://console.aws.amazon.com/vpc/).
+
+
 ## TODO: I think I need to cover
 * [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint and to be able to script things like configuring the firewall. That requires AWS CLI access, which requires IAM secrets, which requires the creation of an IAM user, which requires the creation of a group.
 
