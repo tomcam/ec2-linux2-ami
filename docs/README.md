@@ -378,5 +378,6 @@ However when I did it I got the error `Unable to locate credentials. You can con
 
 ## Related
 * [How do I make sure I don't incur charges when I'm using the AWS Free Tier?](https://aws.amazon.com/premiumsupport/knowledge-center/free-tier-charges/?icmpid=support_rt_kc_articles)
+* [Best Practices for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html?icmpid=docs_support_createcase_category_amazon-elastic-compute-cloud-linux_general-guidance)
 * [How do I troubleshoot problems connecting to my EC2 Linux instance using SSH?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles)
 
