@@ -130,7 +130,7 @@ That's good, but the docs so far haven't mentioned it and the errors I was getti
 in that direction. I wanted to configure using the CLI using the command line (makes it easier to automate later).
 I wanted to do this via the command line. As near as I can tell from [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html), the second part of that page called "Creating an IAM User and Group (AWS CLI)" can't be implemented via the command line right after creating an instance. That's because it requires secrets.
 
-### Create an Administrators group
+## Create an Administrators group
 
 * Go the [IAM Console](https://console.aws.amazon.com/iam/home?#home).
 
@@ -208,7 +208,7 @@ Administrator https://2649932634109.signin.aws.amazon.com/console
 * Click the link to log in. You'll be taken to an **aws** login page 
 with fields containing **Account ID or alias**, **IAM user name**, and **Password**.
 
-**Account ID or alias*
+**Account ID or alias**
 
 | 2649932634109         |           
 | --------------------- |
@@ -223,11 +223,34 @@ with fields containing **Account ID or alias**, **IAM user name**, and **Passwor
 | *************         |           
 | --------------------- |
 
+Note the new account ID, which is just a big long number. It's the same
+number that started the URL you were just issued.
 
-| Sign in               |           
-| --------------------- | 
+* Log in using the username you just created (`Administrator` in this example) 
+and custom password you created a few steps back.
 
-### Get access keys
+## Create your IAM access keys
+
+* Visit the [IAM Console](https://console.aws.amazon.com/iam/home?#home) at [https://console.aws.amazon.com/iam/home?#home](https://console.aws.amazon.com/iam/home?#home) and in the navigation pane under **Dashboard**, choose **Users**.
+
+* Choose the IAM username you just created, **Administrator** in this example.
+
+A **Summary** page appears, with tabs like **Permissions**, **Groups**, **Tags**, and **Security Credentials**.
+
+* Choose the **Security Credentials** tab, then under **Access keys** choose **Create access key**.
+
+A **Create access key** dialog appears. It says:
+
+```
+This is the only time that the secret access keys can be viewed or downloaded. You cannot recover them later. However, you can create new access keys at any time.
+```
+
+Under it is a button that says **Download .csv file** and
+Two strings (sets of numbers and letters) have been created for you:
+
+| Access key ID  | Secret access key   |
+|----------------|---------------------|
+| AF4355111FADFZ | ************** [Show]() |
 
 ## Connecting with SSH
 
