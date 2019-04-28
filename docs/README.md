@@ -220,9 +220,12 @@ with fields containing **Account ID or alias**, **IAM user name**, and **Passwor
 
 **Password**
 
-| 2649932634109         |           
+| *************         |           
 | --------------------- |
 
+
+| Sign in               |           
+| --------------------- | 
 
 ### Get access keys
 
