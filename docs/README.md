@@ -309,11 +309,31 @@ on your dashboard.
 
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
+
 ## Set up your firewall (configure routes for VPC)
 
-* Open the [Amazon VPC console](https://console.aws.amazon.com/vpc/).
+* Open the [EC console](https://console.aws.amazon.com/ec2/).
 
-* In the navigation pane, choose **Route Tables** under **Virtual Private Cloud**.
+* In the navigation pane under **INSTANCES**, choose **Instances**.
+
+* Choose the right instance under **Instance ID**.
+
+* Choose the **Description** tab, then find **VPC ID** and choose that.
+
+The VPC console appears for that VPC.
+
+* Choose link under **Main Route table**
+
+The route table's configuration page appears.
+
+* Choose the **Routes** tab.
+
+* Choose **Edit routes**.
+
+There should be one with the Destination `0.0.0.0/0` and Target with an igw number.
+
+### TODO: Figure out what to do if there's no such destination; see https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles
+
 
 
 ## TODO: I think I need to cover
