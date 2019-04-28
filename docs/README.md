@@ -109,6 +109,7 @@ what you type. Plus you have to do it twice.
 | PEM file              | ~/.ssh/sshkey.pem          |
 | Access key ID         |                            |
 | Secret access key     |                            |
+| Location of AWS secret access key file | ~/.aws/config |
 | Regin name            |                            |
 
 * Put together the command you'll use to log on using this information:
@@ -254,17 +255,19 @@ Two strings (sets of numbers and letters) have been created for you:
 |----------------|---------------------|
 | AF4355111FADFZ | ************** [Show]() |
 
-* As the explanation says, you get one chance to view the secret access key. 
+* As the explanation says, you get one chance to view the secret access key.
+Do not give it to anyon outside your group.
 
 * Choose **Show**, then copy the secret access key and paste it into your notes.
 
 * Choose **Access key ID** and copy and paste it into your notes too.
 
 * Choose Download .csv file and save it on your machine. The best place is
-to create the directory `~/.aws/` and name the file `config`. You might do something like:
+to create the directory `~/.aws/` and name the file `config`. 
+Depending on your operating system and shell, you might do something like:
 
 ```
-# Create the hidden aws directory:
+# Create the hidden aws directory.
 mkdir ~/.aws
 
 # Copy the downloaded keys to that directory
@@ -274,16 +277,30 @@ cp ~/Downloads/accessKeys.csv ~/.aws
 mv ~/.aws/accessKeys.csv ~/.aws/config
 ```
 
-
 * Double-check that you saved the file and the secret access key, then choose **Close**.
 
 ## Configure AWS CLI options
 
 * At the prompt enter `aws configure --profile Administrator`
 
+```
 aws configure --profile Administrator
+```
 
-Its created in ~/.aws/config
+You're asked a series of questions. 
+
+* Fill them in appropriately,
+replacing the values shown here with the ones you've recorded:
+
+```
+AWS Access Key ID [None] AF4355111FADFZ
+AWS Secret Access Key [None]ZDFAFDFDAFWWFDSAFA2AF$++_
+Default region name [None]use-east-2
+```
+
+* Accept defaults for the other values.
+
+A file named `credentials` containing these values has been written to  `~/.aws` directory.
 
 ## Connecting with SSH
 
