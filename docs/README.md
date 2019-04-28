@@ -309,9 +309,11 @@ on your dashboard.
 
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
-## Set up your firewall (VPC)
+## Set up your firewall (configure routes for VPC)
 
 * Open the [Amazon VPC console](https://console.aws.amazon.com/vpc/).
+
+* In the navigation pane, choose **Route Tables** under **Virtual Private Cloud**.
 
 
 ## TODO: I think I need to cover
@@ -360,6 +362,7 @@ aws iam create-group --group-name Administrators
 ```
 
 However when I did it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure".`
+* **Blocking bug:** in the VPC route table part (second half) of [How do I troubleshoot problems connecting to my EC2 Linux instance using SSH?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles) it says "In the navigation pane, choose Route Tables and then select your VPC route table from the list" I have no idea what my VPC route table is. That's why I came to this article. 
 
 ## Troubleshooting
 * I tried to run the command `aws ec2 get-console-output --instance-id i-065aa3e3f23ae9859 --region us-west-1`. I returned the error `Unable to locate credentials. You can configure credentials by running "aws configure".` I already did so.
