@@ -107,7 +107,9 @@ what you type. Plus you have to do it twice.
 | IAM username          | Administrator              |
 | password              |                            |
 | PEM file              | ~/.ssh/sshkey.pem          |
-
+| Access key ID         |                            |
+| Secret access key     |                            |
+| Regin name            |                            |
 
 * Put together the command you'll use to log on using this information:
 
@@ -252,6 +254,37 @@ Two strings (sets of numbers and letters) have been created for you:
 |----------------|---------------------|
 | AF4355111FADFZ | ************** [Show]() |
 
+* As the explanation says, you get one chance to view the secret access key. 
+
+* Choose **Show**, then copy the secret access key and paste it into your notes.
+
+* Choose **Access key ID** and copy and paste it into your notes too.
+
+* Choose Download .csv file and save it on your machine. The best place is
+to create the directory `~/.aws/` and name the file `config`. You might do something like:
+
+```
+# Create the hidden aws directory:
+mkdir ~/.aws
+
+# Copy the downloaded keys to that directory
+cp ~/Downloads/accessKeys.csv ~/.aws
+
+# Rename the key file
+mv ~/.aws/accessKeys.csv ~/.aws/config
+```
+
+
+* Double-check that you saved the file and the secret access key, then choose **Close**.
+
+## Configure AWS CLI options
+
+* At the prompt enter `aws configure --profile Administrator`
+
+aws configure --profile Administrator
+
+Its created in ~/.aws/config
+
 ## Connecting with SSH
 
 When it's ready, click the **Connect** button between **Launch Instance** and **Actions** 
@@ -274,6 +307,7 @@ aws ec2 get-console-output --instance-id
 
 ## Areas I need to improve
 
+* Somewhere early note the region like use-east-2 or whatever
 * Tradition in Linux is to create a new user immediately. Near as I can tell they've
 done that already by creating ec2-user, right? And if that's true does it pose
 a security threat since most people could guess the username? Or is the theory that
