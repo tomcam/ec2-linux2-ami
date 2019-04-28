@@ -132,10 +132,12 @@ I wanted to do this via the command line. As near as I can tell from [Creating Y
 
 * From the navigation pane choose **Users**, under **Dashboard**.
 
+| Add user | Delete user |
+|----------|-------------|
+
 | User name | Groups | Access key age | Password age | Last activity | MFA |
 |-----------|--------|----------------|--------------|---------------|-----|
-| HTTP              | TCP      | 80           | 0.0.0.0/0          |             |
-
+| *There are no IAM users. Learn more |
 
 ## Connecting with SSH
 
