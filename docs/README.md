@@ -102,10 +102,10 @@ what you type. Plus you have to do it twice.
 | Instance name         |                            |
 | Instance ID           |                            |
 | Public DNS            | ec2-50-51-232-66.us-east-1.compute.amazonaws.com            |
-| default usernam       | ec2-user                   |
-| root password         |                            |
-| new username password |                            |
-| new username password |                            |
+| default username      | ec2-user                   |
+| password              |                            |
+| IAM username          | Administrator              |
+| password              |                            |
 | PEM file              | ~/.ssh/sshkey.pem          |
 
 
@@ -157,6 +157,23 @@ down your password, you clever person.
 
 * Choose **Next: Permissions**.
 
+The **Set permissions** page appears.
+
+* Choose **Add user to group**.
+
+* Under **Get started with groups**, choose **Create group**.
+
+A big **Create group** dialog appears with a long list of policy names.
+
+* For **Group name**, type `Administrators`.
+
+* Choose the **Filter policies** dropdown, and under **POLICY TYPE**, make sure you check **AWS managed - job function**.
+
+The number of policies has been reduced (you set a filter). 
+
+* In the **Policy name** column, find **AdministratorAccess** and make sure you check it.
+
+* Choose **Create group**.
 
 ## Connecting with SSH
 
