@@ -124,6 +124,12 @@ on your dashboard.
 
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
+## TODO: I think I need to cover
+* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint. It turns out that you first have to configure
+the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), which is cryptographically
+signed. That's good, but the docs so far haven't mentioned it and the errors I was getting didn't point me
+in that direction.
+
 ### Get the instance fingerprint
 
 aws ec2 get-console-output --instance-id
