@@ -128,13 +128,17 @@ This section is based on [Connecting to Your Linux Instance Using SSH](https://d
 * [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint. It turns out that you first have to configure
 the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html), which is cryptographically
 signed. That's good, but the docs so far haven't mentioned it and the errors I was getting didn't point me
-in that direction.
+in that direction. 
 
 ### Get the instance fingerprint
 
+### NOTE
+
+* Pretty sure this has to be preceded by [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) to get the AWS CLI signed, then configuring the CLI [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+
 aws ec2 get-console-output --instance-id
 
-## Not covered properly
+## Areas I need to improve
 
 * Tradition in Linux is to create a new user immediately. Near as I can tell they've
 done that already by creating ec2-user, right? And if that's true does it pose
@@ -158,10 +162,11 @@ of cost overruns.
 ### Amazon doc defects
 
 [(Optional) Get the Instance Fingerprint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-fingerprint) gives incomplete instructions for getting the instance ID fingerprint.
-They give the example `aws ec2 get-console-output --instance-id instance_id` but when I did it I got the error `You must specify a region. You can also configure your region by running "aws configure".` I found an example of specifying a region on [Stack Overflow](https://stackoverflow.com/questions/29166957/error-you-must-specify-a-region-when-running-command-aws-ecs-list-container-inst) which looked more like this: `aws ec2 get-console-output --instance-id instance_id --region us-east-1`. When I tried it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure"`.
+They give the example `aws ec2 get-console-output --instance-id instance_id` but when I did it I got the error `You must specify a region. You can also configure your region by running "aws configure".` I found an example of specifying a region on [Stack Overflow](https://stackoverflow.com/questions/29166957/error-you-must-specify-a-region-when-running-command-aws-ecs-list-container-inst) which looked more like this: `aws ec2 get-console-output --instance-id instance_id --region us-east-1`. When I tried it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure"`. So I think that passage is missing a whole section.  I think it needs to be precded. And getting the fingerprint probably isn't optional, because I'm sure I'm not the only one who ran into the fingerprint problem by just stopping an instance.
 
 ## Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 * [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
-
-
+* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) to get the AWS CLI signed
+* Configuring the CLI [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
+* [AWS Tasks that Require Account Root User](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)
