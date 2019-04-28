@@ -132,11 +132,15 @@ I wanted to do this via the command line. As near as I can tell from [Creating Y
 
 * From the navigation pane choose **Users**, under **Dashboard**.
 
+* You'll see that there are no users defined yet.
+
+```
 *Add user* | *Delete user* 
 
 | User name | Groups | Access key age | Password age | Last activity | MFA |
 |-----------|--------|----------------|--------------|---------------|-----|
 | *There are no IAM users. Learn more |
+```
 
 ## Connecting with SSH
 
