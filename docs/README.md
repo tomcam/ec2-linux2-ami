@@ -1,5 +1,16 @@
 ## Creating an Amazon Linux 2 instance and configuring it to run Golang programs
 
+Shows how create a simple Amazon Linux 2 running Golang, using the default Go web server,
+in a simple web app.
+
+* Launch a new t2.micro instance
+* Create root user credentials
+* Create a new user with sudo privileges
+* Install Go
+* Configure the built-in firewall (security group) to serve web pages and accept ssh connections
+* Compile and install a tiny web app in Go
+* Make the web app visible to the world
+
 This is mostly for me because I'm bad at following multiple web pages linking all
 over the place. It's MacOS-oriented, assuming a bash shell.
 
@@ -76,29 +87,74 @@ The **Launch Status** page appears with a message saying
 **Your instances are now launching**, with a link to the instance being
 created.
 
-When it's ready, click the **Connect** button between **Launch Instance** and **Actions** 
-on your dashboard.
+## Collect and type  the following information
+
+As soon as you need the following information, type it into a document
+file of some kind. 
+**In the case of passwords, type them before actually entering them, then 
+copy to the system clipboard** and paste them in when asked for
+a password. That way you don't type in the wrong thing, because password fields hide
+what you type. Plus you have to do it twice.
+
+
+| Note this             |  Write the value here      |
+| --------------------- | -------------------------- |
+| Instance name         |                            |
+| Instance ID           |                            |
+| Public DNS            | ec2-50-51-232-66.us-east-1.compute.amazonaws.com            |
+| default usernam       | ec2-user                   |
+| root password         |                            |
+| new username password |                            |
+| new username password |                            |
+| PEM file              | ~/.ssh/sshkey.pem          |
+
+
+* Put together the command you'll use to log on using this information:
+
+```
+# The -i option specifies where the keyfile is
+ssh -i "~/.ssh/sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
+```
+
 
 ## Connecting with SSH
 
+When it's ready, click the **Connect** button between **Launch Instance** and **Actions** 
+on your dashboard.
+
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+
+### Get the instance fingerprint
+
+aws ec2 get-console-output --instance-id
 
 ## Not covered properly
 
+* Tradition in Linux is to create a new user immediately. Near as I can tell they've
+done that already by creating ec2-user, right? And if that's true does it pose
+a security threat since most people could guess the username? Or is the theory that
+requiring a PEM file pretty much obviates that need?
 * Passwords are just dead. It's all .PEM files.
 * PEM files seem to contain both public and private keys
 * An overview of using SSH
 * How to deal with stopping an instance, then trying to get back in (SSH fingerprint error)
 * Create an SSH directory `mkdir -p ~/.ssh`
+* AWS-CLI [describe-instances](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
+* Getting [ssh](http://www.openssh.com/)
 
 ### Notes
 
 * A warning says `Rules with source of 0.0.0.0/0 allow all IP addresses to access your instance. We recommend setting security group rules to allow access from known IP addresses only.` But isn't that exactly what I want for a website?
-
 * Be sure to use [Billing Preferences](https://console.aws.amazon.com/billing/home?#/preferences) to notify you
 of cost overruns.
+* [Region List](https://docs.aws.amazon.com/general/latest/gr/rande.html)
 
-Based on:
+### Amazon doc defects
+
+[(Optional) Get the Instance Fingerprint](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connection-prereqs.html#connection-prereqs-fingerprint) gives incomplete instructions for getting the instance ID fingerprint.
+They give the example `aws ec2 get-console-output --instance-id instance_id` but when I did it I got the error `You must specify a region. You can also configure your region by running "aws configure".` I found an example of specifying a region on [Stack Overflow](https://stackoverflow.com/questions/29166957/error-you-must-specify-a-region-when-running-command-aws-ecs-list-container-inst) which looked more like this: `aws ec2 get-console-output --instance-id instance_id --region us-east-1`. When I tried it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure"`.
+
+## Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 * [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
