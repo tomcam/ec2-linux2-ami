@@ -310,7 +310,7 @@ on your dashboard.
 This section is based on [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
 ## TODO: I think I need to cover
-* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint. I
+* [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint and to be able to script things like configuring the firewall. That requires AWS CLI access, which requires IAM secrets, which requires the creation of an IAM user, which requires the creation of a group.
 
 ### Get the instance fingerprint
 
@@ -356,6 +356,10 @@ aws iam create-group --group-name Administrators
 
 However when I did it I got the error `Unable to locate credentials. You can configure credentials by running "aws configure".`
 
+## Troubleshooting
+* I tried to run the command `aws ec2 get-console-output --instance-id i-065aa3e3f23ae9859 --region us-west-1`. I returned the error `Unable to locate credentials. You can configure credentials by running "aws configure".` I already did so.
+
+
 ## Based on:
 * [Getting Started with Amazon EC2 Linux Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 * [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
@@ -363,3 +367,8 @@ However when I did it I got the error `Unable to locate credentials. You can con
 * [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
 * [Identities (Users, Groups, and Roles)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html)
 * [AWS Tasks that Require Account Root User](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)
+
+## Links
+[How do I make sure I don't incur charges when I'm using the AWS Free Tier?](https://aws.amazon.com/premiumsupport/knowledge-center/free-tier-charges/?icmpid=support_rt_kc_articles)
+
+
