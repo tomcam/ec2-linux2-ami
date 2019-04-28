@@ -175,6 +175,13 @@ The number of policies has been reduced (you set a filter).
 
 * Choose **Create group**.
 
+The new group appears:
+*Create group* | *Refresh* 
+
+| Groups         | Attached policies   |
+|----------------|---------------------|
+| Administrators | AdministratorAccess |
+
 ## Connecting with SSH
 
 When it's ready, click the **Connect** button between **Launch Instance** and **Actions** 
