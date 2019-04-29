@@ -416,6 +416,40 @@ mkdir -p $HOME/go/src/test
 cd $HOME/go/src/test
 ```
 
+## Install and configure Git
+
+You can create a simple Go program if it uses only the standard library. 
+But any packages on GitHub require that you install and configure Git.
+For example, getting the Gorilla Mux package using `go get` as shown
+here requires Git:
+
+```
+go get -u github.com/gorilla/mux
+# Results in the following error :
+# go: missing Git command. See https://golang.org/s/gogetcmd
+```
+
+### Download Git
+
+Many Go repositories are on [GitHub](http://github.com), of course, so get an account there. It's free.
+
+* From your remote machine, run `sudo yum install git`:
+
+```
+sudo yum install git
+```
+
+* Configure Git with your username and email address. Obviously replace the ones shown here with your own.
+
+```
+# Use your own name and email here, duh!
+git config --global user.name "Tom Campbell"
+git config --global user.email "tomcampbell@example.com"
+```
+
+
+
+
 ## TODO: I think I need to cover
 * [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html). Reason: I wanted to get the fingerprint and to be able to script things like configuring the firewall. That requires AWS CLI access, which requires IAM secrets, which requires the creation of an IAM user, which requires the creation of a group.
 
@@ -483,4 +517,4 @@ has a good summary of creating your first IAM user and group
 * [Best Practices for Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html?icmpid=docs_support_createcase_category_amazon-elastic-compute-cloud-linux_general-guidance)
 * [How do I troubleshoot problems connecting to my EC2 Linux instance using SSH?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles)
 * [Deploying a Go application on AWS EC2](https://hackernoon.com/deploying-a-go-application-on-aws-ec2-76390c09c2c5)
-
+* [How to set up an EC2 instance with Github, Node.js and PostgreSQL](https://medium.com/digitalcrafts/how-to-set-up-an-ec2-instance-with-github-node-js-and-postgresql-e363cb771826)
