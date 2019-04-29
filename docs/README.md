@@ -1,4 +1,9 @@
-## Creating an Amazon Linux 2 instance and configuring it to run Golang programs
+# Creating an Amazon Linux 2 instance and configuring it to run Golang programs
+
+## TODO
+* Learn how to get SSL certificate
+
+
 
 Shows how create a simple Amazon Linux 2 running Golang, using the default Go web server,
 in a simple web app.
@@ -8,6 +13,8 @@ in a simple web app.
 * Create a new user with sudo privileges
 * Install Go
 * Configure the built-in firewall (security group) to serve web pages and accept ssh connections
+* Connect your website to a domain name
+* Get an SSL certificate for the domain name
 * Compile and install a tiny web app in Go
 * Make the web app visible to the world
 
@@ -102,6 +109,7 @@ what you type. Plus you have to do it twice.
 | Instance name         |                            |
 | Instance ID           |                            |
 | Public DNS            | ec2-50-51-232-66.us-east-1.compute.amazonaws.com            |
+| ssh connection string | ssh -i "sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
 | default username      | ec2-user                   |
 | password              |                            |
 | IAM username          | Administrator              |
@@ -112,10 +120,48 @@ what you type. Plus you have to do it twice.
 | Location of AWS secret access key file | ~/.aws/config |
 | Regin name            |                            |
 
-* Put together the command you'll use to log on using this information:
+## Visit the AWS Management Console to get your ssh connection string
+
+* Go the AWS dashboard and under **Compute**, choose **EC2**.
+
+* In the navigation pane, choose **Instances** under **INSTANCES**.
+
+A page with your instance(s) will appear.
+
+* Choose the row with the right Instance ID, then choose **Connect**.
+
+A **Connect To Your Instance** dialog appears. 
+
+* Next to **I would like to connect with** choose **A standalone SSH client**.
+
+You're given a number of directions. *Read them carefully and follow them!* 
+Among the most important you'll see that you need to change permissions
+for the sshkey file. So change appropriately; here's an example. 
+
+* In your local terminal program, run:
 
 ```
-# The -i option specifies where the keyfile is
+# Replace this with the filename and
+# directory you created for your PEM file.
+chmod 400 ~/.ssh/sshkey.pem 
+```
+
+The **Connect To Your Instance** dialog also has the
+exact command you need to get access to your instance with SSH.
+It will look something like this:
+
+```
+# -i specifies the file pathname of the keyfile
+ssh -i "sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
+```
+
+### Note
+
+The example they give may not work. Make sure you add the direct path to 
+the PEM file after the `-i`. For example, on my system it would be
+
+```
+# -i specifies the file pathname of the keyfile
 ssh -i "~/.ssh/sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
 ```
 
