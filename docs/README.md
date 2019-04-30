@@ -207,6 +207,21 @@ You're given the choice to export the DNS values to a file.
 You need to log into your DNS provider (usually your domain name registrar, such as GoDaddy or Namecheap)
 and find
 
+I created an A record that points to an IP address, starting with 52 etc. 
+We placer cert files at alocation on an ec2 instance. To that we need
+the cert private key. When I request a cert from ACM it doesn't privide
+a private key. So I need to create a load balancer or cloudfront distribution.
+I want 2 ec2 instances working. I could use an app load balanceer directly and
+put instances behind that. I could use Cloudfront, and the target could
+ALB (app load balancer). Because I want ddos protection, I should use 
+AWS WAF, web application firewall. Cloudfront advantage is it's a CDN
+so latency is important so I should use. Which means 
+Certification has to be in same region as ALB. Clloudfront cert must be
+in US-EAST-1. My instance will be behind Cloudfront.
+Request  a new cert for US-EAST-1 
+
+
+Can't associate the
 
 ## Configuring the AWS CLI
 
