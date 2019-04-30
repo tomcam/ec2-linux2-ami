@@ -164,6 +164,49 @@ the PEM file after the `-i`. For example, on my system it would be
 # -i specifies the file pathname of the keyfile
 ssh -i "~/.ssh/sshkey.pem" ec2-user@ec2-50-51-232-66.us-east-1.compute.amazonaws.com
 ```
+## I think hackernoon has it right. This is where to set up an Elastic IP
+
+[https://hackernoon.com/getting-a-free-ssl-certificate-on-aws-a-how-to-guide-6ef29e576d22](https://hackernoon.com/getting-a-free-ssl-certificate-on-aws-a-how-to-guide-6ef29e576d22)
+
+* From the AWS dashboard, choose **Services**, then search for `certificate`.
+
+The AWS Certificate Manager appears.
+
+* Under **Provision Certificates**, choose **Get started**.
+
+The **Request a certificate** page appears.
+
+* Choose **Request a public certificate**, then the **Request certificate** button.
+
+You're on the **Add domain names** step.
+
+* Under **Domain name**, fill in the domain name itself, for example, `example.com`.
+
+* If you also have another variation, such as `www.example.com`, you can choose **Add another name to this certificate**
+and include it.
+
+* Choose **Next**.
+
+The **Select validation method** page appears. This is where you must prove you own the domain, or at least
+have control over it. That requires either modifying the DNS records or answering from one of the contact emails
+given for the domain name. In this example we'll use DNS validation, because most domain names use
+privacy shielding now.
+
+* Choose **Review**.
+
+A page appears, summarizing the changes you plan to make.
+
+You're given the choice to export the DNS values to a file. 
+
+* Choose **Export DNS configuration to a file**.
+
+* If you used Route 53 to register your domain, you'll see a button that says **Create the record in Route 53**. Otherwise...
+
+### Add a CNAME record for each alias
+
+You need to log into your DNS provider (usually your domain name registrar, such as GoDaddy or Namecheap)
+and find
+
 
 ## Configuring the AWS CLI
 
@@ -447,7 +490,7 @@ git config --global user.name "Tom Campbell"
 git config --global user.email "tomcampbell@example.com"
 ```
 
-
+## Getting an SSL certificate
 
 
 ## TODO: I think I need to cover
@@ -518,3 +561,5 @@ has a good summary of creating your first IAM user and group
 * [How do I troubleshoot problems connecting to my EC2 Linux instance using SSH?](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/?icmpid=support_rt_kc_articles)
 * [Deploying a Go application on AWS EC2](https://hackernoon.com/deploying-a-go-application-on-aws-ec2-76390c09c2c5)
 * [How to set up an EC2 instance with Github, Node.js and PostgreSQL](https://medium.com/digitalcrafts/how-to-set-up-an-ec2-instance-with-github-node-js-and-postgresql-e363cb771826)
+* [Getting a Free SSL Certificate on AWS a How-To Guide](https://hackernoon.com/getting-a-free-ssl-certificate-on-aws-a-how-to-guide-6ef29e576d22)
+
